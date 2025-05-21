@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Spring Boot Parent POM -->
+    <!-- 这会提供很多默认配置和依赖管理 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- 更新到你希望使用的Spring Boot版本，例如 3.2.5 或其他稳定版 -->
+        <version>3.2.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 项目坐标 -->
+    <groupId>com.example</groupId> <!-- 替换为你的 Group ID -->
+    <artifactId>virtual-girlfriend-app</artifactId> <!-- 替换为你的 Artifact ID -->
+    <version>0.0.1-SNAPSHOT</version> <!-- 项目版本 -->
+    <name>virtual-girlfriend-app</name> <!-- 项目名称 -->
+    <description>Virtual Girlfriend Backend Application</description> <!-- 项目描述 -->
+
+    <!-- 项目属性 -->
+    <properties>
+        <!-- 确保Java版本与你的环境和Spring Boot版本要求一致 -->
+        <!-- Spring Boot 3.x 通常需要 Java 17 或更高 -->
+        <java.version>17</java.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Boot Starter Web: 用于构建Web应用, 包括RESTful APIs, Spring MVC, 内嵌Tomcat -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Starter Data JPA: 用于数据库持久化, 包括Hibernate -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- MySQL Connector/J: MySQL数据库驱动 -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope> <!-- 只在运行时需要 -->
+        </dependency>
+
+        <!-- Lombok (可选): 简化JavaBean代码, 如自动生成getters, setters, constructors等 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional> <!-- 标记为可选, 因为它主要在编译时起作用 -->
+        </dependency>
+
+        <!-- Spring Boot DevTools (可选): 提供开发时便利, 如自动重启, LiveReload等 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Boot Starter Test: 用于单元测试和集成测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope> <!-- 只在测试时需要 -->
+        </dependency>
+        <!-- Jakarta Persistence API: JPA 3.1 -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven Plugin: 用于打包可执行JAR/WAR文件和运行应用 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Maven Compiler Plugin (可选, Spring Boot Parent POM通常已配置好) -->
+            <!-- 如果你需要显式指定编译器的source和target版本, 可以添加这个插件 -->
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version> <!- 使用一个较新的版本 ->
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding> <!- 确保源文件编码 ->
+                </configuration>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+
+</project>

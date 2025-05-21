@@ -1,0 +1,255 @@
+/* --- (之前的 :root, *, body, app-container, app-header, app-title, sidebar-toggle-btn 不变) --- */
+:root {
+    --primary-color: #ff85a2;
+    --secondary-color: #82c0ff;
+    --accent-color: #ffd700;
+    --background-color: #fdf6f8;
+    --sidebar-bg: #ffffff;
+    --panel-bg: #ffffff;
+    --text-color: #4a4a4a;
+    --text-light: #777;
+    --border-color: #e8e8e8;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --font-main: 'Inter', sans-serif;
+    --font-title: 'Pacifico', cursive;
+    --sidebar-width: 280px; /* 调整宽度 */
+    --creation-panel-width: 350px; /* 角色设定面板宽度 */
+    --transition-speed: 0.35s; /* 统一过渡速度 */
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* 更平滑的缓动 */
+}
+/* ... (body, app-container, app-header, app-title, sidebar-toggle-btn 样式基本同前，确保没有 avatar 相关) ... */
+body {
+    font-family: var(--font-main);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow: hidden;
+}
+.app-container { display: flex; flex-direction: column; height: 100vh; }
+.app-header {
+    background-image: linear-gradient(to right, var(--primary-color), #ffb3c1);
+    color: white; padding: 10px 20px; display: flex; align-items: center;
+    justify-content: space-between; box-shadow: 0 2px 10px var(--shadow-color); z-index: 100;
+}
+.app-title { font-family: var(--font-title); font-size: 2em; margin: 0; letter-spacing: 1px; text-shadow: 1px 1px 1px rgba(0,0,0,0.1); }
+.sidebar-toggle-btn { background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+
+
+/* Main Content Area */
+.app-main-content {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+/* Sidebar (Left) */
+.sidebar-left {
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    box-shadow: 2px 0 10px var(--shadow-color);
+    transform: translateX(0);
+    transition: transform var(--transition-speed) var(--timing-function);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-left.hidden {
+    transform: translateX(calc(-1 * var(--sidebar-width) - 10px)); /* -10px 避免阴影残留 */
+}
+.sidebar-section {
+    /* border-bottom: 1px solid var(--border-color); */ /* 可以用hr代替 */
+}
+.sidebar-section:last-child { border-bottom: none; }
+
+.sidebar-header {
+    padding: 12px 15px;
+    background-color: #fdf6f8; /* 与body背景稍有区别 */
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar-header h3 {
+    font-size: 1.05em;
+    color: var(--primary-color);
+    margin: 0; display: flex; align-items: center;
+}
+.sidebar-header h3 i { margin-right: 8px; }
+
+.girlfriend-list-section .sidebar-body, /* 如果列表有单独的body */
+.girlfriend-details-section .sidebar-body {
+    padding: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.girlfriend-list-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* 给列表一个最大高度，内容多时滚动 */
+    overflow-y: auto;
+}
+.girlfriend-list-ul .list-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+    font-size: 0.95em;
+}
+.girlfriend-list-ul .list-item:hover {
+    background-color: #fce4ec; /* 淡粉色悬停 */
+}
+.girlfriend-list-ul .list-item.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+}
+.sidebar-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0;
+}
+
+.info-list p { margin-bottom: 8px; font-size: 0.9em; }
+.info-list p strong { color: var(--text-color); min-width: 50px; display: inline-block; }
+.info-list p span { color: var(--text-light); }
+
+/* Main Panel */
+.main-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column; /* 创建区、互动区、聊天区垂直排列 */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Creation Panel (可隐藏的设定区) */
+.creation-panel {
+    background-color: #f7f8fa;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    /* Removed max-height, let content decide or set a fixed height */
+    /* max-height: 40%; */
+    overflow-y: auto;
+    transform: translateY(0); /* 改为上下滑动 */
+    opacity: 1;
+    transition: transform var(--transition-speed) var(--timing-function),
+                opacity var(--transition-speed) ease,
+                max-height var(--transition-speed) ease, /* 为了平滑隐藏 */
+                padding var(--transition-speed) ease,
+                border var(--transition-speed) ease;
+    max-height: 500px; /* 给一个足够大的max-height用于动画 */
+}
+.creation-panel.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+    overflow: hidden;
+}
+
+/* Interaction Panel (常驻) */
+.interaction-panel-wrapper {
+    padding: 15px;
+    background-color: #fcfdff; /* 稍有区别的背景 */
+    border-bottom: 1px solid var(--border-color);
+    /* overflow-y: auto; */ /* 通常内容不多，不需要滚动 */
+}
+
+.panel-card {
+    background-color: var(--panel-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 5px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+}
+.panel-header {
+    padding: 10px 15px;
+    background-color: #f1f3f5;
+    border-bottom: 1px solid var(--border-color);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.panel-header h4 { font-size: 1em; color: var(--secondary-color); margin: 0; display: flex; align-items: center; }
+.panel-header h4 i { margin-right: 8px; }
+.panel-body { padding: 15px; overflow-y: auto; flex-grow: 1; }
+
+
+/* --- (Form, Button, Action, Chat styles 基本同前，可以微调padding/margin/fontsize适应新布局) --- */
+.form-group { margin-bottom: 10px; }
+.form-group label { display: block; font-size: 0.9em; margin-bottom: 3px; color: var(--text-light); }
+.form-group input[type="text"], .form-group input[type="number"] {
+    width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.9em;
+}
+.form-group input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 2px rgba(255, 133, 162, 0.2); }
+
+.btn {
+    padding: 8px 15px; border: none; border-radius: 5px; font-size: 0.9em; cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn i { margin-right: 6px; }
+.btn-primary { background-color: var(--primary-color); color: white; }
+.btn-primary:hover { background-color: #e6629a; }
+.btn-secondary { background-color: #ccc; color: #333; }
+.btn-secondary:hover { background-color: #bbb; }
+.btn-action { background-color: var(--secondary-color); color: white; flex-basis: calc(33.33% - 7px); /* 每行三个 */ }
+.btn-action:hover { background-color: #67a9e0; }
+
+.action-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+.action-result-toast {
+    margin-top: 10px; padding: 8px; background-color: #e6f7ff; border-left: 3px solid var(--secondary-color);
+    border-radius: 4px; font-size: 0.9em; opacity: 0; transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.action-result-toast.show { opacity: 1; transform: translateY(0); }
+.action-result-toast.error { background-color: #ffebee; border-left-color: #f44336; color: #c62828;}
+
+.chat-area-wrapper { flex-grow: 1; display: flex; flex-direction: column; background-color: var(--panel-bg); overflow: hidden; }
+.chat-header-bar { padding: 10px 15px; background-color: #f8f9fa; border-bottom: 1px solid var(--border-color); }
+.chat-header-bar h5 { margin: 0; font-size: 0.95em; color: var(--primary-color); display: flex; align-items: center; }
+.chat-header-bar h5 i { margin-right: 8px; }
+#chat-log { flex-grow: 1; padding: 15px; overflow-y: auto; background-color: #fdfdfd; display: flex; flex-direction: column; gap: 10px; }
+.chat-log-user, .chat-log-gf { padding: 8px 12px; border-radius: 15px; max-width: 75%; font-size: 0.95em; word-wrap: break-word; line-height: 1.5; }
+.chat-log-user { background-color: var(--primary-color); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-log-gf { background-color: #eef1f5; color: var(--text-color); align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-input-area { display: flex; padding: 10px; border-top: 1px solid var(--border-color); background-color: #fff; }
+#chat-input { flex-grow: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 20px; margin-right: 8px; font-size: 0.95em; }
+#chat-input:focus { outline: none; border-color: var(--secondary-color); }
+.btn-send { background-color: var(--secondary-color); color: white; width: 40px; height: 40px; border-radius: 50%; padding: 0; }
+.btn-send i { margin: 0; font-size: 1.1em; }
+.btn-send:hover { background-color: #67a9e0; transform: scale(1.05); }
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar-left {
+        position: fixed; /* 改为 fixed 或 absolute */
+        top: 58px; /* header height */
+        bottom: 0;
+        transform: translateX(calc(-1 * var(--sidebar-width) - 10px));
+    }
+    .sidebar-left.open {
+        transform: translateX(0);
+    }
+
+    .creation-panel { /* 小屏幕上设定区也变为浮动面板 */
+        position: fixed;
+        top: 58px; /* header height */
+        right: 0;
+        width: var(--creation-panel-width); /* 或者 100vw */
+        max-width: 90vw;
+        bottom: 0;
+        transform: translateX(100%); /* 从右侧滑出 */
+        z-index: 45; /* 比左侧边栏低一点 */
+        border-left: 1px solid var(--border-color);
+        border-bottom: none;
+        padding:15px; /* 确保有内边距 */
+        /* transition-delay: 0.05s; /* 稍微延迟，避免与左侧同时动画显得乱 */
+    }
+    .creation-panel.open {
+        transform: translateX(0);
+    }
+    .main-panel { /* 主面板在小屏幕上可能需要处理被浮动面板遮挡的问题 */
+        /* 可以考虑给 main-panel 增加 margin-left 当左侧边栏打开时 */
+    }
+}
