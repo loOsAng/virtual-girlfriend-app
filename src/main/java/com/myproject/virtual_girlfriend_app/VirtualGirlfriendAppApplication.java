@@ -1,4 +1,4 @@
-package com.myproject.virtual_girlfriend_app; // 使用你的包名
+package com.myproject.virtual_girlfriend_app; 
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
