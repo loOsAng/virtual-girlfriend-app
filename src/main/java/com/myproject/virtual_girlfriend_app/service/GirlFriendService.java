@@ -1,4 +1,4 @@
-package com.myproject.virtual_girlfriend_app.service; // 使用你的包名
+package com.myproject.virtual_girlfriend_app.service; 
 
 import com.myproject.virtual_girlfriend_app.model.ChatMessage;
 import com.myproject.virtual_girlfriend_app.model.GirlFriend;
@@ -44,8 +44,6 @@ public class GirlFriendService {
 
     @Transactional
     public GirlFriend createGirlFriend(GirlFriend girlFriend) {
-        // 确保 characterAttr 和 fromWorld 在保存前已设置 (如果前端传来的是 character 和 from)
-        // 如果GirlFriend的setter已经处理了，这里就不需要额外逻辑
         return girlFriendRepository.save(girlFriend);
     }
 
@@ -86,7 +84,7 @@ public class GirlFriendService {
         return false;
     }
 
-    // 这个方法现在应该可以正常工作了
+    
     public String performAction(Long gfId, String actionName) {
         Optional<GirlFriend> gfOptional = girlFriendRepository.findById(gfId);
         if (gfOptional.isEmpty()) {
