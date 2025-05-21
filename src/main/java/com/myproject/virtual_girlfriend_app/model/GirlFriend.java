@@ -1,22 +1,11 @@
-package com.myproject.virtual_girlfriend_app.model; // 确保包名是你的项目包名
+package com.myproject.virtual_girlfriend_app.model; 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-// import jakarta.persistence.Column; // 如果之前用了
-
-// 假设你使用了 Lombok，如果没有，你需要手动添加 getters/setters/constructors
-// import lombok.Getter;
-// import lombok.Setter;
-// import lombok.NoArgsConstructor;
-// import lombok.AllArgsConstructor;
 
 @Entity
-// @Getter
-// @Setter
-// @NoArgsConstructor
-// @AllArgsConstructor
 public class GirlFriend {
 
     @Id
@@ -28,9 +17,9 @@ public class GirlFriend {
     private String home;
     private String work;
     private String hobby;
-    private String characterAttr; // 原 'character'
+    private String characterAttr; // 原character
     private String birthday;
-    private String fromWorld;     // 原 'from'
+    private String fromWorld;     // 原 from
 
     // --- 构造函数 ---
     public GirlFriend() {
@@ -47,7 +36,7 @@ public class GirlFriend {
         this.fromWorld = fromWorld;
     }
 
-    // --- Getters and Setters (如果不用Lombok，请确保它们都存在) ---
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }
@@ -68,7 +57,7 @@ public class GirlFriend {
     public void setFromWorld(String fromWorld) { this.fromWorld = fromWorld; }
 
 
-    // --- **互动行为方法 (确保这些方法存在)** ---
+    // --- **互动行为方法 ** ---
     public String holdHand() {
         return "和" + this.name + "牵手了";
     }
@@ -116,7 +105,7 @@ public class GirlFriend {
     public String Walk() {
         return "和" + this.name + "散步了";
     }
-    // --- 互动行为方法结束 ---
+    
 
     @Override
     public String toString() {
