@@ -52,7 +52,7 @@ nbdist/
 
 # Application specific properties with secrets
 application.properties # 不上传包含真实密钥的文件
-# src/main/resources/application-local.properties
+src/main/resources/application-local.properties
 
 # Operating System Files
 .DS_Store
