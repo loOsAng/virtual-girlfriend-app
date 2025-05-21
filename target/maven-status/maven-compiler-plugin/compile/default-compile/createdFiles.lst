@@ -1,6 +1,0 @@
-com\myproject\virtual_girlfriend_app\repository\GirlFriendRepository.class
-com\myproject\virtual_girlfriend_app\model\ChatMessage.class
-com\myproject\virtual_girlfriend_app\controller\GirlFriendController$ChatRequest.class
-com\myproject\virtual_girlfriend_app\controller\GirlFriendController.class
-com\myproject\virtual_girlfriend_app\VirtualGirlfriendAppApplication.class
-com\myproject\virtual_girlfriend_app\model\GirlFriend.class
