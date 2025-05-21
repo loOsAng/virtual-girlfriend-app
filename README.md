@@ -108,36 +108,6 @@
 5.  **访问前端页面：**
     打开你的 Web 浏览器，访问 `http://localhost:8080/`。
 
-## 📖 项目结构 (简要)
-virtual-girlfriend-app/
-├── .mvn/ # Maven Wrapper
-├── src/
-│ ├── main/
-│ │ ├── java/
-│ │ │ └── com/myproject/virtual_girlfriend_app/ # 你的包名
-│ │ │ ├── controller/ # Spring MVC 控制器
-│ │ │ ├── model/ # 数据实体类 (GirlFriend, ChatMessage)
-│ │ │ ├── repository/ # Spring Data JPA Repositories
-│ │ │ └── service/ # 业务逻辑服务
-│ │ │ └── VirtualGirlfriendAppApplication.java # Spring Boot 主启动类
-│ │ ├── resources/
-│ │ │ ├── static/ # 静态前端资源 (HTML, CSS, JS, images)
-│ │ │ │ ├── index.html
-│ │ │ │ ├── style.css
-│ │ │ │ └── script.js
-│ │ │ ├── application.properties.example # 属性文件模板
-│ │ │ └── application.properties # 应用配置文件 (本地使用, 被git忽略)
-│ │ └── templates/ # (如果使用服务端模板引擎，本项目未使用)
-│ └── test/ # 测试代码
-├── .gitattributes
-├── .gitignore
-├── HELP.md
-├── LICENSE
-├── mvnw
-├── mvnw.cmd
-├── pom.xml # Maven 项目配置文件
-└── README.md # 就是你正在看的这个文件
-
 
 ## 💡 未来可能的改进方向 (v0.2 及以后)
 
