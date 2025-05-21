@@ -21,4 +21,39 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-replay_pid*
+
+# Maven M2 Repo
+.mvn/
+
+# Maven target directory
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Application specific properties with secrets
+application.properties # 不上传包含真实密钥的文件
+# src/main/resources/application-local.properties
+
+# Operating System Files
+.DS_Store
+Thumbs.db
