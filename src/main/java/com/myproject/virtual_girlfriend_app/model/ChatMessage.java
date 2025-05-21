@@ -1,11 +1,10 @@
-package com.myproject.virtual_girlfriend_app.model; // 使用你的包名
+package com.myproject.virtual_girlfriend_app.model; 
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class ChatMessage {
-    // ... (内容同前一条回复)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
