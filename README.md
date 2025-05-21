@@ -52,7 +52,7 @@
 
 *   **Git:**版本控制系统。
 *   **GitHub:**代码托管平台。
-*   **IDE:** IntelliJ IDEA / VS Code (或你使用的其他IDE)。
+*   **IDE:** VS Code 
 *   **MySQL Workbench:**数据库管理工具。
 
 ## 🔧 环境搭建与运行指南
