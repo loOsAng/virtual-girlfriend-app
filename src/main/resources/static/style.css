@@ -17,7 +17,6 @@
     --transition-speed: 0.35s; /* 统一过渡速度 */
     --timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* 更平滑的缓动 */
 }
-/* ... (body, app-container, app-header, app-title, sidebar-toggle-btn 样式基本同前，确保没有 avatar 相关) ... */
 body {
     font-family: var(--font-main);
     background-color: var(--background-color);
@@ -250,6 +249,6 @@ body {
         transform: translateX(0);
     }
     .main-panel { /* 主面板在小屏幕上可能需要处理被浮动面板遮挡的问题 */
-        /* 可以考虑给 main-panel 增加 margin-left 当左侧边栏打开时 */
+        
     }
 }
