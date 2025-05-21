@@ -1,4 +1,4 @@
-package com.myproject.virtual_girlfriend_app.controller; // 使用你的包名
+package com.myproject.virtual_girlfriend_app.controller; 
 
 import com.myproject.virtual_girlfriend_app.model.ChatMessage;
 import com.myproject.virtual_girlfriend_app.model.GirlFriend;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/girlfriends")
-@CrossOrigin(origins = "*") // 开发时允许所有，生产环境应配置具体来源
+@CrossOrigin(origins = "*") // 开发允许所有，生产环境配置具体来源
 public class GirlFriendController {
 
     private final GirlFriendService girlFriendService;
@@ -30,8 +30,6 @@ public class GirlFriendController {
             return ResponseEntity.badRequest().body(null); // 或者返回错误信息体
         }
         // 确保characterAttr和fromWorld被正确设置，如果前端传来的是旧的字段名
-        // 例如: girlFriend.setCharacterAttr(girlFriend.getCharacter());
-        // 但更好的做法是前端直接发送正确的字段名 characterAttr 和 fromWorld
 
         GirlFriend createdGf = girlFriendService.createGirlFriend(girlFriend);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdGf);
